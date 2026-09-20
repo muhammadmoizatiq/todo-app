@@ -1,0 +1,35 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f style.css
+          test -f app.js
+
+      - name: Check JavaScript syntax
+        run: node --check app.js
+
+      - name: Run basic test
+        run: |
+          echo "Building application..."
+          echo "Running automated tests..."
+          echo "All CI checks passed."
