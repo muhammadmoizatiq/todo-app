@@ -1,4 +1,4 @@
-const studentName = document.getElementById("studentName";
+const studentName = document.getElementById("studentName");
 const addBtn = document.getElementById("addBtn");
 const studentList = document.getElementById("studentList");
 const markAllBtn = document.getElementById("markAllBtn");
