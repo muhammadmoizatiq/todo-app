@@ -1,7 +1,10 @@
-
 const studentName = document.getElementById("studentName");
 const addBtn = document.getElementById("addBtn");
 const studentList = document.getElementById("studentList");
+
+const totalStudents = document.getElementById("totalStudents");
+const presentStudents = document.getElementById("presentStudents");
+const absentStudents = document.getElementById("absentStudents");
 
 let students = [];
 
@@ -30,26 +33,39 @@ function displayStudents() {
     students.forEach((student, index) => {
         const studentDiv = document.createElement("div");
 
+        studentDiv.className = "student";
+
         studentDiv.innerHTML = `
-            <p>
+            <span>
                 <strong>${student.name}</strong>
-                - ${student.status}
+                -
+                <span class="${student.status.toLowerCase()}">
+                    ${student.status}
+                </span>
+            </span>
+
+            <span>
                 <button onclick="toggleAttendance(${index})">
                     Mark ${student.status === "Absent" ? "Present" : "Absent"}
                 </button>
-                <button onclick="deleteStudent(${index})">
+
+                <button class="delete-btn" onclick="deleteStudent(${index})">
                     Delete
                 </button>
-            </p>
+            </span>
         `;
 
         studentList.appendChild(studentDiv);
     });
+
+    updateStatistics();
 }
 
 function toggleAttendance(index) {
     students[index].status =
-        students[index].status === "Absent" ? "Present" : "Absent";
+        students[index].status === "Absent"
+            ? "Present"
+            : "Absent";
 
     displayStudents();
 }
@@ -57,4 +73,20 @@ function toggleAttendance(index) {
 function deleteStudent(index) {
     students.splice(index, 1);
     displayStudents();
+}
+
+function updateStatistics() {
+    const total = students.length;
+
+    const present = students.filter(
+        student => student.status === "Present"
+    ).length;
+
+    const absent = students.filter(
+        student => student.status === "Absent"
+    ).length;
+
+    totalStudents.textContent = total;
+    presentStudents.textContent = present;
+    absentStudents.textContent = absent;
 }

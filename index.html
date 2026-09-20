@@ -9,20 +9,40 @@
 
 <body>
 
-    <div class="container">
-        <h1>Student Attendance Manager</h1>
-        <p>Manage student attendance easily</p>
+<div class="container">
 
-        <div class="add-student">
-            <input type="text" id="studentName" placeholder="Enter student name">
-            <button id="addBtn">Add Student</button>
+    <h1>Student Attendance Manager</h1>
+    <p>Manage student attendance easily</p>
+
+    <div class="add-student">
+        <input type="text" id="studentName" placeholder="Enter student name">
+        <button id="addBtn">Add Student</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total Students</h3>
+            <span id="totalStudents">0</span>
         </div>
 
-        <div id="studentList">
-            <!-- Students will appear here -->
+        <div class="stat-box">
+            <h3>Present</h3>
+            <span id="presentStudents">0</span>
+        </div>
+
+        <div class="stat-box">
+            <h3>Absent</h3>
+            <span id="absentStudents">0</span>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <div id="studentList">
+        <!-- Students will appear here -->
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
