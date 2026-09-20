@@ -11,15 +11,25 @@
 
 <div class="container">
 
-    <h1>Student Attendance Manager</h1>
-    <p>Manage student attendance easily</p>
+    <div class="header">
+        <h1>Student Attendance Manager</h1>
+        <p>Manage your class attendance easily</p>
+    </div>
 
     <div class="add-student">
-        <input type="text" id="studentName" placeholder="Enter student name">
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter student name"
+        >
+
         <button id="addBtn">Add Student</button>
     </div>
 
+    <div id="message"></div>
+
     <div class="stats">
+
         <div class="stat-box">
             <h3>Total Students</h3>
             <span id="totalStudents">0</span>
@@ -34,10 +44,13 @@
             <h3>Absent</h3>
             <span id="absentStudents">0</span>
         </div>
+
     </div>
 
+    <button id="markAllBtn">Mark All Present</button>
+
     <div id="studentList">
-        <!-- Students will appear here -->
+        <p class="empty-message">No students added yet.</p>
     </div>
 
 </div>

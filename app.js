@@ -1,6 +1,8 @@
 const studentName = document.getElementById("studentName");
 const addBtn = document.getElementById("addBtn");
 const studentList = document.getElementById("studentList");
+const markAllBtn = document.getElementById("markAllBtn");
+const message = document.getElementById("message");
 
 const totalStudents = document.getElementById("totalStudents");
 const presentStudents = document.getElementById("presentStudents");
@@ -10,11 +12,31 @@ let students = [];
 
 addBtn.addEventListener("click", addStudent);
 
+studentName.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addStudent();
+    }
+});
+
+markAllBtn.addEventListener("click", markAllPresent);
+
 function addStudent() {
+
     const name = studentName.value.trim();
 
+    message.textContent = "";
+
     if (name === "") {
-        alert("Please enter a student name.");
+        message.textContent = "Please enter a student name.";
+        return;
+    }
+
+    const alreadyExists = students.some(
+        student => student.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (alreadyExists) {
+        message.textContent = "Student already exists!";
         return;
     }
 
@@ -24,13 +46,24 @@ function addStudent() {
     });
 
     studentName.value = "";
+
     displayStudents();
 }
 
 function displayStudents() {
+
     studentList.innerHTML = "";
 
+    if (students.length === 0) {
+        studentList.innerHTML =
+            '<p class="empty-message">No students added yet.</p>';
+
+        updateStatistics();
+        return;
+    }
+
     students.forEach((student, index) => {
+
         const studentDiv = document.createElement("div");
 
         studentDiv.className = "student";
@@ -49,7 +82,9 @@ function displayStudents() {
                     Mark ${student.status === "Absent" ? "Present" : "Absent"}
                 </button>
 
-                <button class="delete-btn" onclick="deleteStudent(${index})">
+                <button
+                    class="delete-btn"
+                    onclick="deleteStudent(${index})">
                     Delete
                 </button>
             </span>
@@ -62,6 +97,7 @@ function displayStudents() {
 }
 
 function toggleAttendance(index) {
+
     students[index].status =
         students[index].status === "Absent"
             ? "Present"
@@ -71,11 +107,23 @@ function toggleAttendance(index) {
 }
 
 function deleteStudent(index) {
+
     students.splice(index, 1);
+
+    displayStudents();
+}
+
+function markAllPresent() {
+
+    students.forEach(student => {
+        student.status = "Present";
+    });
+
     displayStudents();
 }
 
 function updateStatistics() {
+
     const total = students.length;
 
     const present = students.filter(

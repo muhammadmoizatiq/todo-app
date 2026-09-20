@@ -7,26 +7,31 @@ body {
 
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 850px;
     margin: 50px auto;
     background-color: white;
-    padding: 30px;
+    padding: 35px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    margin-bottom: 5px;
+.header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-p {
+.header h1 {
+    margin-bottom: 8px;
+}
+
+.header p {
     color: #666;
 }
 
 .add-student {
     display: flex;
     gap: 10px;
-    margin: 25px 0;
+    margin-bottom: 10px;
 }
 
 input {
@@ -34,6 +39,7 @@ input {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    font-size: 15px;
 }
 
 button {
@@ -41,11 +47,30 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.85;
 }
 
 #addBtn {
     background-color: #333;
     color: white;
+}
+
+#markAllBtn {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #444;
+    color: white;
+}
+
+#message {
+    min-height: 20px;
+    text-align: center;
+    color: red;
+    margin-bottom: 10px;
 }
 
 .stats {
@@ -64,26 +89,22 @@ button {
 
 .stat-box h3 {
     margin: 5px 0;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .stat-box span {
-    font-size: 24px;
+    font-size: 25px;
     font-weight: bold;
-}
-
-#studentList {
-    margin-top: 20px;
 }
 
 .student {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: 15px;
     margin-bottom: 10px;
     background-color: #f8f8f8;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .present {
@@ -98,4 +119,10 @@ button {
 
 .delete-btn {
     margin-left: 5px;
+}
+
+.empty-message {
+    text-align: center;
+    color: #888;
+    padding: 20px;
 }
